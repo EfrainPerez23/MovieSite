@@ -10,7 +10,8 @@ from Resources.UserResource import User
 
 app = Flask(__name__)
 
-app.secret_key = 'movieRecomender'
+app.config.from_pyfile('config.cfg')
+app.secret_key = app.config.get('SECRET_KEY')
 api = Api(app)
 
 
