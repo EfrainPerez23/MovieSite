@@ -10,14 +10,11 @@ database_password = app.app.config.get('DATABASE_PASSWORD')
 wordlist = None
 class DBManager(object):
     
-    @classmethod
-    def connection(cls):
-        connection = pymysql.connect(host=database_host,
+    def __init__(self):
+        self.connection = pymysql.connect(host=database_host,
                                     user=database_username,
                                     password=database_password,
                                     db=database_name,
                                     port=database_port,
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
-
-         
