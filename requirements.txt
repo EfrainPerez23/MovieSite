@@ -9,3 +9,7 @@ Flask-RESTful
 Flask-JWT
 Flask-SQLAlchemy
 Flask-Mail
+
+JWT
+pymysql
+datetime
