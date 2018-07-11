@@ -5,7 +5,7 @@ from flask_jwt import JWT, timedelta
 # Resources
 from Resources.UserResource import UserRegister
 from Resources.test import Test
-
+from Resources.MovieResource import Movie
 app = Flask(__name__)
 
 
@@ -21,6 +21,7 @@ app.secret_key = app.config.get('SECRET_KEY')
 api = Api(app)
 api.add_resource(Test, '/test')
 api.add_resource(UserRegister, '/sign-up')
+api.add_resource(Movie, '/movies/<string:page>')
 
 
 if __name__ == '__main__':

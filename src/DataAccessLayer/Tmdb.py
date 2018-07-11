@@ -1,5 +1,4 @@
 import tmdbsimple as tmdb
-import requests
 import app as app
 
 class Tmdb():
