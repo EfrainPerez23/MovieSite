@@ -21,7 +21,7 @@ app.secret_key = app.config.get('SECRET_KEY')
 api = Api(app)
 api.add_resource(Test, '/test')
 api.add_resource(UserRegister, '/sign-up')
-api.add_resource(Movie, '/movies/<string:page>')
+api.add_resource(Movie, '/movies/')
 
 
 if __name__ == '__main__':
