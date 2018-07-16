@@ -12,7 +12,7 @@ class Movie(Resource):
     def get(self):
         tmdb = Tmdb()
         args = request.args
-        results = tmdb.filterMovies(args['page'], args['id'], args['gender'])
+        results = tmdb.filterMovies(args['page'], args['id'], args['gender'], args['name'])
         if results is None:
             return {'data': None, 'message': 'There is a error with the data base...'}, 500
         return {'response': results}
