@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_restful import Api
 from flask_jwt import JWT, timedelta
 
@@ -7,7 +7,6 @@ from Resources.UserResource import UserRegister
 from Resources.test import Test
 from Resources.MovieResource import Movie
 app = Flask(__name__)
-
 
 
 app.config['JWT_AUTH_URL_RULE'] = '/login'
@@ -25,6 +24,19 @@ api.add_resource(Movie, '/movies/')
 
 
 if __name__ == '__main__':
-    from Auth.Security import  identity, authenticate
+    from Auth.Security import identity, authenticate
     jwt = JWT(app, authenticate, identity)
+
+    @jwt.auth_response_handler
+    def customized_response_handler(access_token, identity):
+        return jsonify({
+            'token': access_token.decode('utf-8'),
+            'user': {
+                'name': identity.name,
+                'lastName': identity.lastName,
+                'id': identity.id,
+                'email': identity.email
+            }
+        })
+
     app.run()
