@@ -6,7 +6,7 @@ class Tmdb(object):
     def __init__(self):
         tmdb.API_KEY = app.app.config.get('TMDB_API_KEY')
 
-    def filterMovies(self, page, id, gender):
+    def filterMovies(self, page, id, gender, name):
         if(page):
             response = tmdb.Movies()
             response = response.now_playing(page=page)
