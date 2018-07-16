@@ -19,7 +19,7 @@ class Tmdb(object):
             response = genres.movie_list()
             return response
         if(name):
-            response = tmdb.Search().movie(query='NOMBRE DE LA PELICULA')
+            response = tmdb.Search().movie(query=name)
             return response
         
         return None
