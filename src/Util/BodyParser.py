@@ -2,6 +2,7 @@ from flask_restful import reqparse
 
 class BodyParser:
 
+    #metodo que crea el parser encargado de validar el cuerpo del json de los request
     @classmethod
     def bodyParser(cls, _args):
         parser = reqparse.RequestParser()

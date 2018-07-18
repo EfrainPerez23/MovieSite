@@ -9,6 +9,8 @@ from DataAccessLayer.Tmdb import Tmdb
 
 class Movie(Resource):
 
+    #endpoint de metodo GET que obtiene las peliculas segun el parametro que se le da
+    #parametros: page, id, gender, name
     def get(self):
         tmdb = Tmdb()
         args = request.args
