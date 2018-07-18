@@ -3,7 +3,9 @@ A movie web page where the usar can rank the movie.
 
 You have to install `python 3.6`.
 
-You have to use a DBMS to run the database. I recomend Xampp or 
+You have to use a DBMS to run the database. I recomend Xampp or Workbench.
+
+Import the database located at `Diseño folder`, the name is `movie.sql`
 
 **Remember**
 If you change your db credentials you have to change it in the `config.cfg` file.
