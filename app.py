@@ -6,6 +6,7 @@ from flask_jwt import JWT, timedelta
 from Resources.UserResource import UserRegister
 from Resources.test import Test
 from Resources.MovieResource import Movie
+from Auth.Security import identity, authenticate
 app = Flask(__name__)
 
 # Init of token security
@@ -17,20 +18,10 @@ app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=3600)
 app.config.from_pyfile('config.cfg')
 app.secret_key = app.config.get('SECRET_KEY')
 
-# Init Rest API endpoints
-api = Api(app)
-api.add_resource(Test, '/test')
-api.add_resource(UserRegister, '/sign-up')
-api.add_resource(Movie, '/movies/')
-
-# Main function
-if __name__ == '__main__':
-    from Auth.Security import identity, authenticate
     jwt = JWT(app, authenticate, identity)
-
-    @jwt.auth_response_handler
-    def customized_response_handler(access_token, identity):
-        return jsonify({
+@jwt.auth_response_handler
+def customized_response_handler(access_token, identity):
+    return jsonify({
             'token': access_token.decode('utf-8'),
             'user': {
                 'name': identity.name,
@@ -39,5 +30,15 @@ if __name__ == '__main__':
                 'email': identity.email
             }
         })
+
+# Init Rest API endpoints
+api = Api(app)
+api.add_resource(Test, '/test')
+api.add_resource(UserRegister, '/sign-up')
+api.add_resource(Movie, '/movies/')
+
+# Main function
+if __name__ == '__main__':
+    
 
     app.run()
