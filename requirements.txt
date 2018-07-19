@@ -15,4 +15,4 @@ pymysql
 datetime
 tmdbsimple
 
-gunicorn
+uwsgi
