@@ -10,6 +10,7 @@ class UserRegister(Resource):
 
     def post(self):
 
+        #estructura del json que debe venir en el post y los campos que son requeridos
         data = BodyParser.bodyParser([
             {
                 'key': 'name',
@@ -37,11 +38,14 @@ class UserRegister(Resource):
             }
         ])
 
+        #cifradp de la contraseña del usuarios
         encryptedPassword = hashlib.sha224(data['password'].encode('utf-8')).hexdigest()
         newUser = User(None, data['name'], data['lastName'], encryptedPassword, data['email'], None, None)
 
+        #instancia de la clase de la entidad user para hacer consultas a la base de datos
         userDAO = UserDAO()
         userVerification = userDAO.findUserByEmail(newUser.email)
+        #validar al usuario
         if userVerification:
             return {'message': 'User already exists with that email', 'data': {
                 'name': userVerification.name,
@@ -49,6 +53,7 @@ class UserRegister(Resource):
                 'email': userVerification.email
             }}, 400
 
+        #validacion de que el usuario se creo correctamente
         if userDAO.create(newUser):
             return {'message': 'User created', 'data': data}, 201
 

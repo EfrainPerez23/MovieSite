@@ -4,8 +4,10 @@ from Models.User import User
 
 from DataAccessLayer.DataAccessObject.DataBase.DBManager import DBManager
 
+#Objeto del usuario para hacer consultas de la entidad a la base de datos
 class UserDAO(DAO):
     
+    #crea un usuario
     def create(self, user):
         if user.isValid():
             conn = DBManager()
@@ -18,10 +20,12 @@ class UserDAO(DAO):
         
         return None
 
+    #Elimina un usuario
     @staticmethod
     def delete(cls, user):
         pass
 
+    #seleccionar un usuario por id
     def read(self, id):
         conn = DBManager()
         cursor = conn.connection.cursor()
@@ -33,14 +37,17 @@ class UserDAO(DAO):
             return user
         return firstUser
 
+    #seleccionar todos los usuarios
     @staticmethod
     def readALL(cls):
         pass
 
+    #actualizar un registro de usuario
     @staticmethod
     def update(self, user):
         pass
     
+    #obtener un usuario por el email
     def findUserByEmail(self, email):
         conn = DBManager()
         cursor = conn.connection.cursor()
