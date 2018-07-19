@@ -40,3 +40,7 @@ python app.py
 
 Finally, you will run your flask server on the port: *5000*
 
+
+**REMEMBER**
+
+FRONT END REPO https://github.com/EfrainPerez23/MovieSite-FE
