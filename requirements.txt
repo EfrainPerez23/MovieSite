@@ -16,3 +16,4 @@ datetime
 tmdbsimple
 
 uwsgi
+psycopg2
