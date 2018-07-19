@@ -14,3 +14,5 @@ JWT
 pymysql
 datetime
 tmdbsimple
+
+gunicorn
