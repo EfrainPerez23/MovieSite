@@ -9,19 +9,16 @@ class Tmdb(object):
 
     #filtrado de peliculas por pagina, id, genero y nombre
     def filterMovies(self, page, id, gender, name):
-        if(page):
+        response = None
+
+        if(page and name == ''):
             response = tmdb.Movies()
             response = response.now_playing(page=page)
-            return response
         if(id):
-            movieInfo = tmdb.Movies(id).info()
-            return movieInfo
+            response = tmdb.Movies(id).info()
         if(gender):
             genres = tmdb.Genres()
             response = genres.movie_list()
-            return response
         if(name):
-            response = tmdb.Search().movie(query=name)
-            return response
-        
-        return None
+            response = tmdb.Search().movie(query=name, page=page)
+        return response

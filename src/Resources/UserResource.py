@@ -55,9 +55,17 @@ class UserRegister(Resource):
 
         #validacion de que el usuario se creo correctamente
         if userDAO.create(newUser):
-            return {'message': 'User created', 'data': data}, 201
+            return {'message': 'User created', 'data': {
+                'name': newUser.name,
+                'lastName': newUser.lastName,
+                'email': newUser.email
+            }}, 201
 
-        return {'message': 'User not created', 'data': data}, 400
+        return {'message': 'User not created', 'data': {
+                'name': data.name,
+                'lastName': data.lastName,
+                'email': data.email
+            }}, 400
 
 
 from DataAccessLayer.DataAccessObject.IDAO.UserDAO import UserDAO

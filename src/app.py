@@ -5,7 +5,7 @@ from flask_jwt import JWT, timedelta
 # Resources
 from Resources.UserResource import UserRegister
 from Resources.test import Test
-from Resources.MovieResource import Movie
+from Resources.MovieResource import MovieResource, UserMovieResource, MovieDeleteResource
 app = Flask(__name__)
 
 # Init of token security
@@ -21,7 +21,9 @@ app.secret_key = app.config.get('SECRET_KEY')
 api = Api(app)
 api.add_resource(Test, '/test')
 api.add_resource(UserRegister, '/sign-up')
-api.add_resource(Movie, '/movies/')
+api.add_resource(MovieResource, '/movies')
+api.add_resource(MovieDeleteResource, '/movie/<int:id>')
+api.add_resource(UserMovieResource, '/user_movie')
 
 # Main function
 if __name__ == '__main__':

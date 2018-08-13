@@ -2,7 +2,6 @@ from werkzeug.security import safe_str_cmp
 from DataAccessLayer.DataAccessObject.IDAO.UserDAO import UserDAO
 
 import hashlib
-import sys
 
 hashlib.sha256()
 
